@@ -7,13 +7,9 @@ from kivy.uix.textinput import TextInput
 
 class SayHello(App):
   def build(self):
-    self.window = GridLayout()
-    self.window.cols = 1
     
-    self.window.size_hint = (0.6, 0.7)
-    self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5 }
-    
-    
+    self._set_window()
+
     self.window.add_widget(Image(source="logo.png"))
     self.greetting = Label(
       text="whats your name? ",
@@ -40,9 +36,26 @@ class SayHello(App):
     self.window.add_widget(self.button)
     
     return self.window
-    
+  
   def callback(self,instance):
     self.greetting.text = f"Hello {self.user.text} !"
+    
+    
+  def _set_window(self):
+    self.window = GridLayout()
+    self.window.cols = 1
+    
+    self.window.size_hint = (0.6, 0.7)
+    self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5 }
+    
+  def _set_logo_and_question(self):
+    self.window.add_widget(Image(source="logo.png"))
+    self.greetting = Label(
+      text="whats your name? ",
+      font_size=18,
+      color="#00FFCE"
+    )
+    self.window.add_widget(self.greetting)
   
 if __name__ == "__main__":
   SayHello().run()
