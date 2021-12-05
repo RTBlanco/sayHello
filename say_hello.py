@@ -8,8 +8,9 @@ from kivy.uix.textinput import TextInput
 class SayHello(App):
   def build(self):
     self._set_window()
-    self._set_logo_and_question()
+    self._set_logo_and_question("what is your name")
     self._set_textinput()
+    self._set_button()
     
     return self.window
   
@@ -24,10 +25,10 @@ class SayHello(App):
     self.window.size_hint = (0.6, 0.7)
     self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5 }
     
-  def _set_logo_and_question(self):
+  def _set_logo_and_question(self, ques):
     self.window.add_widget(Image(source="logo.png"))
     self.greetting = Label(
-      text="whats your name? ",
+      text=ques,
       font_size=18,
       color="#00FFCE"
     )
@@ -40,6 +41,7 @@ class SayHello(App):
       size_hint=(1,0.5)
     )
     self.window.add_widget(self.user)
+    
     
   def _set_button(self):
     self.button = Button(
